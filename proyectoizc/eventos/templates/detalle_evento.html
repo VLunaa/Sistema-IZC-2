@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block extracss %}
+<link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="{%static '/css/Sidebar.css'%}">
+<link rel="stylesheet" href="{%static '/css/detalle_evento.css'%}">
+
+<style>
+  html,
+  body,
+  .container-fluid,
+  .row,
+  .col-md-2,
+  .col-md-10 {
+    height: auto;
+  }
+</style>
+{% endblock extracss %}
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar-container">
+        <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div>
+                <div class="sb-sidenav-menu-heading"></div>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'registrar_evento'  %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Registrar nuevo Evento</button>
+                </a>
+              </div>
+              <br>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'editar_evento' evento.id %}">
+                <button class="btn mx-auto">
+                  <i class="fa fa-edit" style="padding-right: 5px;"></i>Editar
+                </button>
+                </a>
+              </div>
+              <br>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'eliminar_evento' evento.id %}">
+                <button class="btn mx-auto">
+                  <i class="fa fa-trash" style="padding-right: 5px;"></i>Eliminar
+                </button>
+                </a>
+              </div>
+              <hr>
+            </div>
+          </div>
+          <div class="sb-sidenav-footer">
+            <div class="small">
+              <span style="font-family: Montserrat, sans-serif;">Usuario : {{user}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-md-10">
+            <div class="card border-0 text-dark bg-light shadow  p-2 bg-light" style="font-family: Montserrat;">
+              <div class="card-header" style="background-color: #A71E1C; color: white;">
+                <b>{{evento.nombreEvento}}</b>
+                <a href="{% url 'mapa_creadores' %}" class="btn btn float-end" style="margin-left: 5px;">
+                  <i class="fa fa-map" style="padding-right: 5px;"></i>Geolocalización
+                </a>
+                <a href="{% url 'mapa_creadores' %}" class="btn btn float-end" style="margin-left: 5px;">
+                  <i class="fa fa-map-marker" style="padding-right: 5px;"></i>Georeferenciación
+                </a>
+              </div>
+              <div>
+              <div class="album py-3 bg-light">
+              <div class="row">
+                <section class="py-2 mt-2">
+                    <div class="container py-4 py-xl-5 " >
+                        <div class="row gy-4 gy-md-0">
+                            <div class="col-md-6">
+                                <div class="p-xl-5 m-xl-4">
+                                  <b><p class="my-3">{{evento.informesEvento}}.</p></b>
+                                  <p class="my-3">{{evento.descripcionEvento}}.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-md-flex align-items-md-center">
+                                <div style="max-width: 650px;"></div><img src="{{ evento.imagenEvento.url }}" class="img-fluid" alt="responsive image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container py-4 py-xl-5">
+                        <div class="row mb-5">
+                            <div class="col-md-8 col-xl-6 text-center mx-auto" style="margin-top: 18px;margin-bottom: 5px;">
+                              <div style="border-bottom: 1px solid black;">
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+                            <div class="col">
+                                <div class="d-flex">
+                                    <div class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-geo-alt-fill">
+                                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+                                        </svg></div>
+                                    <div class="px-3">
+                                        <h4>Sede y fecha del evento</h4>
+                                        <span class= "text-black"><b>Sede</b></span>
+                                        <p>{{evento.sedeEvento}}.</p>
+                                        <span class= "text-black"><b>fecha</b></span>
+                                        <p>{{evento.fechaDeEvento}}.</p>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex">
+                                    <div class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-calendar3">
+                                            <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"></path>
+                                            <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
+                                        </svg></div>
+                                    <div class="px-3">
+                                        <h4>Institución organizadora</h4>
+                                        <p>{{evento.institucionOrganizadora}}.</p>
+                                              
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex">
+                                    <div class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-building">
+                                            <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"></path>
+                                            <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"></path>
+                                        </svg></div>
+                                    <div class="px-3">
+                                        <h4>Otras instituciones</h4>
+                                        <p>{{evento.institucionCoadyuvante}}.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

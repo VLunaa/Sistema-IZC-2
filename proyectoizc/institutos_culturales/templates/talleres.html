@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block extracss %}
+<link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="{%static '/css/Sidebar.css'%}">
+<style>
+  html,
+  body,
+  .container-fluid,
+  .row,
+  .col-md-2,
+  .col-md-10 {
+    height: 100%;
+  }
+
+
+</style>
+{% endblock extracss %}
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar-container">
+        <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+          <div class="sb-sidenav-menu align-items-start">
+            <div class="nav">
+              <div>
+                <div class="sb-sidenav-menu-heading"></div><a class="nav-link active d-flex justify-content-center" href="/institutos_culturales/registrar_taller/">
+                    <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-plus-circle"
+                        style="padding-right: 5px;"></i>Registrar nuevo taller</button>
+              </a>
+              <hr>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'exposiciones' %}">
+                  <button class="btn mx-auto">
+                    <i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Exposiciones
+                  </button>
+                </a>
+              </div>
+              
+              <br>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'eventosinst' %}">
+                <button class="btn mx-auto">
+                  <i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Eventos
+                </button>
+                </a>
+              </div>
+              <br>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'producciones' %}">
+                <button class="btn mx-auto">
+                  <i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Publicaciones
+                </button>
+                </a>
+              </div>
+              <hr>
+            </div>
+            <div>
+              <div class="sb-sidenav-menu-heading align-content-center">
+                  <b><p class="text-white">Filtros</p></b>
+                </div>
+            <form method = "POST">
+              {% csrf_token %}
+              
+              <div class="nav-link collapsed custom-link"  data-toggle="collapse" data-target="#collapseLayouts"
+              aria-expanded="false" aria-controls="collapseLayouts">
+              <span>Municipios<p>{{form.municipioInstituto}}</p></span>
+            </div>
+
+
+            <div class="nav-link collapsed custom-link"  data-toggle="collapse" data-target="#collapseLayouts"
+              aria-expanded="false" aria-controls="collapseLayouts">
+              <span>Nombre del Instituto <p>{{form.institucionResponsable}}</p></span>
+            </div>
+
+            <div class="nav-link collapsed custom-link"  data-toggle="collapse" data-target="#collapseLayouts"
+              aria-expanded="false" aria-controls="collapseLayouts">
+              <button class="btn"><i class="fa"
+                style="padding-right: 5px;" type="submit"></i>Filtrar</button>
+            </div>
+          </form>
+            </div>
+          </div>
+        </div>
+        <div class="sb-sidenav-footer">
+          <div class="small"><span style="font-family: Montserrat, sans-serif;">Usuario: {{user}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="card border-0 text-dark bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;">
+          <b>Talleres: {{ talleres.count }}</b>
+          <a href="{% url 'mapa' %}" class="btn btn float-end" style="margin-left: 5px;">
+            <i class="fa fa-map" style="padding-right: 5px;"></i>Geolocalización
+          </a>
+          <a href="{% url 'mapa' %}" class="btn btn float-end" style="margin-left: 5px;">
+            <i class="fa fa-map-marker" style="padding-right: 5px;"></i>Georeferenciación
+          </a>
+        </div>
+<!-- Talleres Start -->
+<div class="container-fluid pt-5">
+    <div class="row">
+      {% for taller in talleres %}
+      <div class="col-lg-3 mb-3 ">
+        <div class="card card-custom border border-dark border-opacity-25 bg-light shadow-sm">
+          <div class="card-header bg-transparent border-bottom-0">
+            <h4 class="card-title">{{ taller.nombreTaller }}</h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ taller.observaciones }}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Nivel:</strong>
+              <p class="card-value card-value-nivel">{{ taller.get_nivelTaller_display }}</p>
+            </li>
+            <li class="list-group-item">
+              <strong>Frecuencia de Taller:</strong>
+              <p class="card-value card-value-frecuencia">{{ taller.get_frecuenciaTaller_display }}</p>
+            </li>
+            <li class="list-group-item">
+              <strong>Instituto responsable:</strong>
+              <p class="card-value card-value-instituto">{{ taller.institucionResponsableTaller }}</p>
+            </li>
+            <li class="list-group-item">
+              <strong>Municipio:</strong>
+              <p class="card-value card-value-municipio">{{ taller.get_municipioTaller_display }}</p>
+            </li>
+          </ul>
+          <div class="card-footer bg-transparent border-top-0">
+            <div class="btn-group">
+              <a href="{% url 'detalle_taller' taller.id %}" class="btn btn-sm btn-outline-secondary">Ver</a>
+              <a href="{% url 'editar_taller' taller.id %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+<!-- Class End -->
+
+
+
+              
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

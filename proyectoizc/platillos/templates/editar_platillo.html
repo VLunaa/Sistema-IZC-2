@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+    <div class="card text-dark bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Registra un platillo</b>
+        </div>
+        <div class="card-body">
+            <h10 class="card-title">Información personal del creador</h10>
+
+
+            <p class="card-text">
+                <form method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+
+                    <div class="form-group">
+                        <span data-toggle="tooltip" title="Seleccione el municipio del platillo.">
+                            <div class="form-group">
+                                <label>Municipio: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{form.municipioPlatillo}}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip" title="Coloque el nombre del platillo">
+                            <div class="form-group">
+                                <label>Nombre de platillo: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.nombrePlatillo }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la descripción del platillo.">
+                            <div class="form-group">
+                                <label>Descripción de platillo: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.descripcionPlatillo }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque los ingredientes que contiene el platillo.">
+                            <div class="form-group">
+                                <label>Ingredientes de platillo: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                    <br>
+                                {{ form.ingredientesPlatillo }}
+                                <br>
+
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la imagen del platillo.">
+                            <div class="form-group">
+                                <label>Imagen de platillo: </label>  <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.imagenPlatillo }}
+                            </div>
+                        </span>
+                        <br>
+
+                        <button id="guardar-button" type="submit" class="btn"
+                        style="margin: 16px; background-color: #A71E1C; border-radius: 14px; color: white;">
+                        Guardar
+                        </button>
+
+                </form>
+            </p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

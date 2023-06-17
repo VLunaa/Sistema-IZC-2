@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block extracss %}
+<link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="{%static '/css/Sidebar.css'%}">
+<style>
+  html,
+  body,
+  .container-fluid,
+  .row,
+  .col-md-2,
+  .col-md-10 {
+    height: 100%;
+  }
+</style>
+{% endblock extracss %}
+
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar-container">
+        <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+          <div class="sb-sidenav-menu align-items-start">
+            <div class="nav">
+              <div>
+                <div class="sb-sidenav-menu-heading"></div><a class="nav-link active d-flex justify-content-center" href="{% url 'registrar_produccion' %}">
+                    <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-plus-circle"
+                        style="padding-right: 5px;"></i>Registrar nueva Publicación</button>
+              </a>
+              <hr>
+              <br>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'talleres' %}">
+                  <button class="btn mx-auto">
+                    <i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Talleres
+                  </button>
+                </a>
+              </div>
+              
+              <br>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'exposiciones' %}">
+                  <button class="btn mx-auto">
+                    <i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Exposiciones
+                  </button>
+                </a>
+              </div>
+               
+              <br>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'producciones' %}">
+                  <button class="btn mx-auto">
+                    <i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Publicaciones
+                  </button>
+                </a>
+              </div>
+              
+              <hr>
+            </div>
+            <div>
+              <div class="sb-sidenav-menu-heading align-content-center">
+                <b><p class="text-white">Filtros</p></b>
+              </div>
+            <form method = "POST">
+              {% csrf_token %}
+              
+              <div class="nav-link collapsed custom-link"  data-toggle="collapse" data-target="#collapseLayouts"
+                aria-expanded="false" aria-controls="collapseLayouts">
+                <span>Municipios<p>{{form.municipioInstituto}}</p></span>
+              </div>
+
+
+              <div class="nav-link collapsed custom-link"  data-toggle="collapse" data-target="#collapseLayouts"
+                aria-expanded="false" aria-controls="collapseLayouts">
+                <span>Instituto <p>{{form.institucionResponsable}}</p></span>
+              </div>
+
+              <div class="nav-link collapsed custom-link"  data-toggle="collapse" data-target="#collapseLayouts"
+                aria-expanded="false" aria-controls="collapseLayouts">
+                <button class="btn"><i class="fa"
+                  style="padding-right: 5px;" type="submit"></i>Filtrar</button>
+              </div>
+            </form>
+
+
+              <div id="collapseLayouts" class="collapse" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <div class="sb-sidenav-menu-nested nav"><a class="nav-link" href="#">Menu
+                    Accordion</a><a class="nav-link" href="#"></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sb-sidenav-footer">
+          <div class="small"><span style="font-family: Montserrat, sans-serif;">Usuario: {{user}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="card text-dark bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Publicaciones: {{ talleres.count }}</b> 
+        </div>
+
+        
+    <div class="card-body ">
+    <!-- Talleres Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+          <div class="row">
+            {% for produccion in produccionesinst %}
+            <div class="col-lg-4 mb-5">
+              <div class="card card-fluid border-0 bg-light shadow-sm pb-2">
+                <div class="card-body text-center">
+                  <h4 class="card-title">{{ produccion.nombreProduccionInst }} </h4>
+                </div>
+                <div class="card-footer bg-transparent py-4 px-5">
+                  <div class="row border-bottom">
+                    <div class="col-6 py-1 text-right border-right">
+                      <strong>Género:</strong>
+                    </div>
+                    <div class="col-6 py-1">{{produccion.get_generoProduccionInst_display}}</div>
+                  </div>
+                  <div class="row border-bottom">
+                    <div class="col-6 py-1 text-right border-right">
+                      <strong>Autor:</strong>
+                    </div>
+                    <div class="col-6 py-1">{{produccion.nombreAutorInst}}</div>
+                  </div>
+                  <div class="row border-bottom">
+                    <div class="col-6 py-1 text-right border-right">
+                      <strong>Instituto responsable:</strong>
+                    </div>
+                    <div class="col-6 py-1">{{ produccion.institucionResponsableDeProduccionInst}}</div>
+                  </div>
+                  <div class="row border-bottom">
+                    <div class="col-6 py-1 text-right border-right">
+                      <strong>Fecha de publicación: </strong>
+                    </div>
+                    <div class="col-6 py-1">{{produccion.fechaDePublicacion}}</div>
+                  </div>
+                </div>
+                <div class="btn-group">
+                    <a href="{% url 'detalle_produccionInst' produccion.id %}" class="btn btn-sm btn-outline-secondary">Ver</a>
+                    <a href="{% url 'editar_produccionInst' produccion.id %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                  </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- Class End -->
+            
+        
+
+              
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

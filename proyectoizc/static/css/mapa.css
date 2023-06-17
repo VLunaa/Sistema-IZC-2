@@ -1,0 +1,175 @@
+.mapasvg{
+  width:28%;
+  margin: auto;
+}
+
+
+
+#contenido123{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: space-between;            
+  height: 900px;   
+  padding-bottom: 20px;
+}
+
+#datos_tema{
+  order: 1;
+  width: 500px;
+  height: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#listado_mapas{
+  order: 2;
+  width: 500px;
+  height: auto;
+  margin-top: 60px;
+}
+
+#mapas_contenedor{
+  order: 3;
+  width: calc(100% - 500px);                
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#mapas_rangos{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items:center;
+  margin-right:auto;
+  margin-left:auto;
+  width: 100%;
+  justify-content: center;
+}
+
+/** RANGOS **/
+
+#titulo_leyendas{
+  width: 100%;
+  text-align:center;
+  font-weight: bold;	
+  font-size:14px;
+  padding-bottom: 5px;
+  padding-top: 9px;
+}
+
+.conte_leyendas{                
+  font-size: 11px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-right:20px;
+  margin-top: 7px;
+
+}
+
+.conte_leyendas .titulo{
+  font-size: 12px;
+  text-align: center;
+  align: center;
+  width: 100%;
+}
+
+.conte_leyendas .texto{
+  font-size: 12px;
+}
+
+.leyenda{
+  width: 30px;
+  height: 30px;                                
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+
+
+/** RESPONSIVO **/
+
+@media screen and (max-width: 1470px){
+
+  #contenido123{
+      flex-direction: row;
+      height: auto;
+      align-items: baseline;
+  }
+
+  #datos_tema{
+      order: 1;
+      width: 50%;                    
+  }
+
+  #listado_mapas{
+      order: 2;
+      width: 50%;
+      margin-bottom: 20px;
+  }
+
+  #mapas_contenedor{                     
+      order: 3;  
+      width: 100%;
+      position:relative;
+      min-height: 750px;
+  }
+
+
+}
+
+@media screen and (max-width: 970px){
+  #contenido123{                    
+      flex-direction: row;
+      height: auto;
+      justify-content: center;
+      align-items: baseline;
+  }
+
+  #datos_tema{
+      width: 50%;                    
+  }
+
+  #listado_mapas{
+      width: 50%;
+  }
+
+
+}
+
+@media screen and (max-width: 750px){
+
+  #contenido123{                    
+      flex-direction: row;
+      height: auto;
+  }
+
+  #datos_tema{
+      order: 1;
+      width: 100%;  
+  }
+
+  #listado_mapas{
+      order: 4;
+      margin-top: 20px;
+      width: 100%;
+
+  }
+
+
+  #mapas_rangos{
+      width: 100%;
+      height: auto;
+      margin-top: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+  }
+
+}

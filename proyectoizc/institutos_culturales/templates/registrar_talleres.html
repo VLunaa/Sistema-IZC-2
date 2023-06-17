@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+    <div class="card text-dark bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Registra un Taller</b>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Información del Taller</h5>
+            <hr>
+
+            <p class="card-text">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque el género del artista.">
+                            <div class="form-group">
+                                <label>Nombre: </label>  <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.nombreTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido paterno del artista.">
+                                <div class="form-group">
+                                <label>Modalidad: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.modalidadTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido materno del artista.">
+                                <div class="form-group">
+                                <label>Conducción: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.conduccionTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque la fecha de nacimiento del artista.">
+                                <div class="form-group">
+                                <label>Nivel: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.nivelTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Coloque un numero de teléfono o red social del artista.">
+                                <div class="form-group">
+                                <label>Genero: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.generoTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Seleccione el nombre del municipio del artista.">
+                                <div class="form-group">
+                                <label>Disciplina: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.disciplinaTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la localidad, rancheria, ciudad o comunidad donde vive el artista.">
+                            <div class="form-group">
+                                <label>Cobertura: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.coberturaTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione el grado máximo de estudios del artista.">
+                            <div class="form-group">
+                                <label>Institución responsable: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.institucionResponsableTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la especialidad del artista. Ejemplo: Bajo. Pintor Realista. Música regional. ETC.">
+                            <div class="form-group">
+                                <label>Foro o Espacio: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.foroEspacioTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Coloque un numero de teléfono o red social del artista.">
+                                <div class="form-group">
+                                <label>Municipio: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.municipioTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Seleccione el nombre del municipio del artista.">
+                                <div class="form-group">
+                                <label>Localidad: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.localidadTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Coloque un numero de teléfono o red social del artista.">
+                                <div class="form-group">
+                                <label>Frecuencia: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.frecuenciaTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Seleccione el nombre del municipio del artista.">
+                                <div class="form-group">
+                                <label>Fecha de realización: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.fechaRealizacionTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Datos de Instructores participantes en el Taller</b>
+                        </div>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione la forma de aprendizaje del artista, en caso de que haya sido por cuenta propia, coloque empírico.">
+                            <div class="form-group">
+                                <label>Nombre del Instructor: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.nombreInstructorTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="En caso de que el artista haya adquirido el conocimiento de alguna institución, coloque el nombre de la misma.">
+                            <div class="form-group">
+                                <label>Procedencia del Instructor: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.procedenciaInstructorTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Datos de Instructores participantes en el Taller</b>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido paterno del artista.">
+                                <div class="form-group">
+                                <label>Niños: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.ninosTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido materno del artista.">
+                                <div class="form-group">
+                                <label>Jovenes hombres: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.jovenesHombresTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque la fecha de nacimiento del artista.">
+                                <div class="form-group">
+                                <label>Adultos hombres: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.adultosHombresTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido paterno del artista.">
+                                <div class="form-group">
+                                <label>Niñas: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.ninasTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido materno del artista.">
+                                <div class="form-group">
+                                <label>Jovenes mujeres: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.jovenesMujeresTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque la fecha de nacimiento del artista.">
+                                <div class="form-group">
+                                <label>Adultos mujeres: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.adultosMujeresTaller }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+                        <span data-toggle="tooltip"
+                        title="Seleccione el grado máximo de estudios del artista.">
+                        <div class="form-group">
+                            <label>Fuente y/o Responsable de Información: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                            {{ form.fuenteInformacionTaller }}
+                            <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                        </div>
+                    </span>
+                    <br>
+                    <span data-toggle="tooltip"
+                    title="Seleccione el grado máximo de estudios del artista.">
+                    <div class="form-group">
+                        <label>Observaciones: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                            type="button"></i>
+                        {{ form.observacionesTaller }}
+                        <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                    </div>
+                </span>
+                <br>
+
+                <span data-toggle="tooltip"
+                title="Seleccione el grado máximo de estudios del artista.">
+                <div class="form-group">
+                    <label>Evidencias: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                        type="button"></i>
+                    {{ form.evidenciasTaller }}
+                    <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                </div>
+            </span>
+                
+                
+        </span>
+                
+                        <br>
+                        <button id="guardar-button" type="submit" class="btn"
+                            style="margin: 16px; background-color: #A71E1C; border-radius: 14px; color: white;">
+                            Guardar
+                        </button>
+
+                </form>
+            </p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

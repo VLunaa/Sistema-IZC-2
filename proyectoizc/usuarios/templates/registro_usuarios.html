@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+    <div class="card text-dark bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Registra un Usuario Administrador</b>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">Información del Usuario</h6>
+
+
+            <p class="card-text">
+                <form method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+
+                    <div class="form-group">
+                        <span data-toggle="tooltip" title="Coloque el nombre de usuario/ Longitud máxima de 150 caracteres alfanuméricos. Letras, dígitos y simbolos">
+                            <div class="form-group">
+                                <label>Nombre de usuario: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{form.username}}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip" title="Coloque el nombre de usuario/ Longitud máxima de 150 caracteres alfanuméricos. Letras, dígitos y simbolos">
+                            <div class="form-group">
+                                <label>Nombre del administrador: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{form.full_name}}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip" title="Coloque un correo eléctronico.">
+                            <div class="form-group">
+                                <label>Correo eléctronico: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.email }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la contraseña.">
+                            <div class="form-group">
+                                <label>Contraseña: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.password1 }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div><br>
+                            <li>Evite que sea similar a su información anterior</li>
+                            <li>Debe contener al menos 8 caracteres</li>
+                            <li>No puede contener solo números</li>
+                            <hr>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Repita la contraseña anterior para confirmar.">
+                            <div class="form-group">
+                                <label>Repetir contraseña: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                    <br>
+                                {{ form.password2 }}
+                                <br>
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        
+                        <br>
+                        <button id="guardar-button" type="submit" class="btn"
+                            style="margin: 16px; background-color: #A71E1C; border-radius: 14px; color: white;">
+                            Guardar
+                        </button>
+
+                </form>
+            </p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

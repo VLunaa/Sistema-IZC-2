@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static '/css/Sidebar.css' %}">
+<link rel="stylesheet" href="{% static '/css/google_map.css' %}">
+<link rel="stylesheet" href="{% static '/css/vista_detallada2.css' %}">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style>
+  html,
+  body,
+  .container-fluid {
+    height: 100%;
+  }
+
+  .row {
+    display: flex;
+    height: 100%;
+  }
+
+  .col-md-2.sidebar-container {
+    overflow-y: auto;
+  }
+
+  .col-md-10 {
+    overflow-y: auto;
+  }
+</style>
+{% endblock %}
+
+<!-- This jquery library is important. With this, you can use the "getJSON" jQuery function below. -->
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar-container">
+        <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div>
+                <div class="sb-sidenav-menu-heading"></div>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'registrar_datos' %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-eye" style="padding-right: 5px;"></i>Nuevo Museo</button>
+                </a>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'registrar_asistencia' %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-users" style="padding-right: 5px;"></i>Registrar Asistencias</button>
+                </a>
+                <hr>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'museos' %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-eye" style="padding-right: 5px;"></i>Museos</button>
+                </a>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'asistencias' %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-users" style="padding-right: 5px;"></i>Asistencias</button>
+                </a>
+                <hr>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'editar_asistencia' asistencia.id %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-pen-square" style="padding-right: 5px;"></i>Editar</button>
+                </a>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'eliminar_asistencia' asistencia.id %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-trash" style="padding-right: 5px;"></i>Eliminar</button>
+                </a>
+              </div>
+              <hr>
+            </div>
+          </div>
+          <div class="sb-sidenav-footer">
+            <div class="small"><span style="font-family: Montserrat, sans-serif;">Logged as: {{ user }}</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="card text-dark border-0 bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+          <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Datos detallados de Artista/Creador</b></div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="project-info-box mt-0">
+                  <h5>{{ asistencia.museo }} - {{ asistencia.museo.get_municipioMuseo_display }}</h5>
+                </div><!-- / project-info-box -->
+                <div class="project-info-box">
+                  <table class="table table-hover">
+                    <tr>
+                      <td><b>Año de registro:</b></td>
+                      <td>{{ asistencia.anio }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Locales hombres:</b></td>
+                      <td>{{ asistencia.locales_hombres }}</td>
+                    </tr>
+                      <td><b>Locales mujeres:</b></td>
+                      <td>{{ asistencia.locales_mujeres }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Nacionales hombres:</b></td>
+                      <td>{{ asistencia.nacionales_hombres }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Nacionales mujeres:</b></td>
+                      <td>{{ asistencia.nacionales_mujeres }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Extranjeros hombres:</b></td>
+                      <td>{{ asistencia.extranjeros_hombres }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Extranjeros mujeres:</b></td>
+                      <td>{{ asistencia.extranjeros_mujeres }}</td>
+                    </tr>
+                     <tr>
+                        <td><b>Total:</b></td>
+                        <td>{{ asistencia.locales_hombres|add:asistencia.locales_mujeres|add:asistencia.nacionales_hombres|add:asistencia.nacionales_mujeres|add:asistencia.extranjeros_hombres|add:asistencia.extranjeros_mujeres }}</td>
+                    </tr>
+                  </table>
+                </div><!-- / project-info-box -->
+              </div><!-- / column -->
+              <div class="col-md-5">
+                <img src="{{ asistencia.museo.imagenMuseo.url }}"  alt="project-image" class="img-fluid rounded">
+              </div><!-- / column -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

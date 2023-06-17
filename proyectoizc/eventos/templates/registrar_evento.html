@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+    <div class="card text-dark bg-light shadow p-3 bg-light"
+        style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Registra un Evento</b>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% elif message.tags == 'warning' %}alert-warning{% endif %}">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            <h6 class="card-title">Informacion del evento</h6>
+            </p>
+
+            <p class="card-text">
+                <form method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+
+                    <div class="form-group">
+                        <span data-toggle="tooltip" title="Coloque el nombre del evento.">
+                            <div class="form-group">
+                                <label>Evento: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{form.nombreEvento}}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip" title="Coloque los datos generales, num de contacto, correo, etc.">
+                            <div class="form-group">
+                                <label>Informes: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.informesEvento }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione el municipio donde se realiza el evento.">
+                            <div class="form-group">
+                                <label>Municipio: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.municipioEvento }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione la categoría a la que pertenece.">
+                            <div class="form-group">
+                                <label>Tipo de evento: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                    <br>
+                                {{ form.tipoEvento }}
+                                <br>
+
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione la disciplina a la que pertenece el evento.">
+                            <div class="form-group">
+                                <label>Categoría del evento: </label>  <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.subTipoEvento }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque un parrafo de información sobre el evento.">
+                            <div class="form-group">
+                                <label>Descripción: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.descripcionEvento }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo opcional</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione el lugar donde se realiza el evento.">
+                            <div class="form-group">
+                                <label>Sede del evento: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.sedeEvento }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la fecha de realización del evento.">
+                            <div class="form-group">
+                                <label>Fecha del evento: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.fechaDeEvento }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la institución encargada de organizar el evento.">
+                            <div class="form-group">
+                                <label>Institución que organiza: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.institucionOrganizadora }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo opcional</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque otras instituciones involucradas.">
+                            <div class="form-group">
+                                <label>Otras instituciones: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.institucionCoadyuvante }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo opcional</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione foto del artista.">
+                            <div class="form-group">
+                                <label>Imagen: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.imagenEvento }}
+                                <br>
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <button id="guardar-button" type="submit" class="btn"
+                        style="margin: 16px; background-color: #A71E1C; border-radius: 14px; color: white;">
+                        Guardar
+                        </button>
+                </form>
+            </p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

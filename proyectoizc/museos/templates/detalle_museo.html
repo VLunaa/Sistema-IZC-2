@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% block extracss %}
+
+<link rel="stylesheet" href="{%static '/css/Sidebar.css'%}">
+<link rel="stylesheet" href="{%static '/css/google_map.css'%}">
+<link rel="stylesheet" href="{%static '/css/vista_detallada2.css'%}">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style>
+  html,
+  body,
+  .container-fluid {
+    height: 100%;
+  }
+
+  .row {
+    display: flex;
+    height: 100%;
+  }
+
+  .col-md-2.sidebar-container {
+    overflow-y: auto;
+  }
+
+  .col-md-10 {
+    overflow-y: auto;
+  }
+</style>
+
+<script type="module">
+  function initMap() {
+
+    const position =  { lat: {{ museo.ubicacionDeMuseo.y }}, lng: {{ museo.ubicacionDeMuseo.x }} }
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 16,
+      center: position,
+    });
+    
+
+    const infoWindow = new google.maps.InfoWindow({
+        maxWidth: 500,
+    });
+
+    const contentString = 
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<h5 id="firstHeading" class="firstHeading">{{ museo.nombre_museo }}</h5>' +
+    '<div id="bodyContent">' +
+    '<p><a href="https://www.google.com/maps/search/?api=1&query={{ museo.ubicacionDeMuseo.y }},{{ museo.ubicacionDeMuseo.x }}" target="_blank">' +
+    "Abrir en Google Maps </a> "+
+    "</div>" + 
+    "</div>";
+
+
+    // Create an info window to share between markers.
+
+    const marker = new google.maps.Marker({
+        position,
+        map,
+        optimized: false,
+    });
+
+    marker.addListener("click", () => {
+        infoWindow.close();
+        infoWindow.setContent(contentString);
+        infoWindow.open(marker.getMap(), marker);
+    });
+  }
+  
+  window.initMap = initMap;
+</script>
+
+{% endblock %}
+
+<!-- This jquery library is importnat. With this you can do the below "getJSON" jQuery  -->
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar-container">
+        <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div>
+              <div class="sb-sidenav-menu-heading"></div>
+              <a class="nav-link active d-flex justify-content-center" href="{% url 'registrar_espacio' %}">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-plus-circle"
+                    style="padding-right: 5px;"></i>Nuevo Museo</button>
+              </a>
+              <a class="nav-link active d-flex justify-content-center" href="{% url 'museos' %}">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-eye"
+                    style="padding-right: 5px;"></i>Museos</button>
+              </a>
+              <hr>
+              <a class="nav-link active d-flex justify-content-center" href="{% url 'asistencias' %}">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-eye"
+                    style="padding-right: 5px;"></i>Datos de Asistencias</button>
+              </a>
+              <a class="nav-link active d-flex justify-content-center" href="{% url 'registrar_asistencia' %}">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-plus-circle"
+                    style="padding-right: 5px;"></i>Registrar Asistencias</button>
+              </a>
+              <hr>
+              <a class="nav-link active d-flex justify-content-center" href="{% url 'editar_museo' museo.id %}">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-edit"
+                    style="padding-right: 5px;"></i>Editar</button>
+              </a>
+              <a class="nav-link active d-flex justify-content-center" href="{% url 'eliminar_museo' museo.id %}">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-trash"
+                    style="padding-right: 5px;"></i>Eliminar</button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sb-sidenav-footer">
+          <div class="small"><span style="font-family: Montserrat, sans-serif;">Usuario : {{user}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="card text-dark border-0 bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Datos detallados del Museo</b></div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="project-info-box mt-0">
+                <h5>{{ museo.nombre_museo }} - {{ museo.get_municipioMuseo_display }}</h5>
+              </div><!-- / project-info-box -->
+              <div class="project-info-box">
+                <table class="table table-hover">
+                  <tr>
+                    <td><b>Datos generales:</b></td>
+                    <td>{{ museo.datos_generales }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Horarios:</b></td>
+                    <td>{{ museo.horariosMuseo }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Costo:</b></td>
+                    <td>{{ museo.costoMuseo }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Dirección:</b></td>
+                    <td>{{ museo.direccionMuseo }}</td>
+                  </tr>
+                </table>
+
+                <div class="mt-4" id="map" style="width: 100%; height: 450px;">
+                  <script
+                  src="https://maps.googleapis.com/maps/api/js?key=APIKEYHERE&callback=initMap&v=weekly"
+                  defer
+                  ></script>
+                </div>
+                
+              </div><!-- / project-info-box -->
+            </div><!-- / column -->
+            <div class="col-md-5">
+              {% if museo.imagenMuseo %}
+                <img src="{{ museo.imagenMuseo.url }}" alt="project-image" class="img-fluid rounded">
+              {% endif %}
+            </div><!-- / column -->
+        </div>    
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
+

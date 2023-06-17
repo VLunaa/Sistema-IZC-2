@@ -1,0 +1,8 @@
+.bs-icon.bs-icon-primary {
+    color: var(--bs-white);
+    background-color: brown;
+  }
+ 
+.span{
+    color: black;
+  }

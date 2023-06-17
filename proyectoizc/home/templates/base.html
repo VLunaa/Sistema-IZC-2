@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-mx">
+    {% load tz %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}Proyecto IZC{% endblock %}</title>
+    <link rel="stylesheet" href="{%static '/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static '/css/Montserrat.css'%}">
+    <link rel="stylesheet" href="{%static '/css/Navbar-Right-Links-Dark-icons.css'%}">
+    <link rel="stylesheet" href="{%static '/css/fontawesome.css'%}">
+    <link rel="icon" href="{% static 'img/logo_icono.ico' %}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
+</head>
+{% block extracss %}
+{% endblock extracss %}
+
+
+<body>
+    <!-- Navbar-->
+    <nav class="navbar navbar-light navbar-expand-lg fw-normal shadow-sm py-1">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static '/img/logosheader.png' %}"  width="600" height="auto" class="img-fluid" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcol-5">
+                    <span class="visually-hidden">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navcol-5">
+                    <!-- Aquí coloca tus elementos de navegación -->
+                </div>
+            </nav>
+        
+            <div class="collapse navbar-collapse" id="navcol-5">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/home/">Inicio</a></li>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <span class="nav-item">Espacios Culturales</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-white border-0 rounded-0 rounded-bottom m-0">
+                            <a href="{% url 'casas' %}" class="dropdown-item">Casas/Centros</a>
+                            <a href="{% url 'espacios' %}" class="dropdown-item">Teatros/Auditorios</a>
+                            <a href="{% url 'museos' %}" class="dropdown-item">Museos</a>
+                            <a href="{% url 'museos' %}" class="dropdown-item">Otros</a>
+                        </div>
+                    </div>
+                    
+                    <li class="nav-item"><a class="nav-link active" href="/institutos_culturales/">Institutos Culturales</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/creadores/">Creadores</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/platillos/">Gastronomía</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/eventos/">Eventos</a></li>
+                    
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <span class="nav-item">Usuarios</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-white border-0 rounded-0 rounded-bottom m-0">
+                            {% if request.user.is_authenticated %}
+                            <div class="dropdown-header">
+                                <span class="username">Usuario: {{ request.user.username }}</span><br>
+                                <span class="last-login">Activo desde: {{ request.user.last_login|timezone:"America/Mexico_City"|date:"j F Y, G:i" }}</span>
+                            </div>
+                            {% endif %}
+                            <hr>
+                            <a href="{% url 'gestion' %}" class="dropdown-item">Gestión de Usuarios</a>
+                            <a href="#" class="dropdown-item">Configuración</a>
+                            <a href="{% url 'logout' %}" class="dropdown-item">Salir</a>
+                        </div>
+                    </div>
+                    
+
+                    <li class="nav-item">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar-->
+    {% block content %}
+
+    {% endblock content %}
+
+    {% block scripts %}
+    <script src="{%static '/bootstrap/js/bootstrap.min.js'%}"></script>
+    {% endblock scripts %}
+
+</body>
+</html>

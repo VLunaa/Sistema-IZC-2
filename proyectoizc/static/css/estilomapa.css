@@ -1,0 +1,465 @@
+.mapasvg{
+    width:100%;
+    margin: auto;
+  }
+  
+  .mapasvg path {
+    fill: #EA8C86;
+    stroke: #A71E1C;
+    stroke-width:4px;
+    transition: fill 0.3s;
+  }
+
+  path .fondo{
+    fill: #b9b9b9;
+  }
+
+  .mapasvg :hover{
+    fill: #A71E1C;
+    opacity: 10;
+  }
+
+text .label{
+    font-size: large;
+    font-size: 150px;
+}
+
+
+/* Layer general de index */
+#contenido123{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: space-between;            
+    height: 900px;   
+    padding-bottom: 20px;
+}
+
+#datos_tema{
+    order: 1;
+    width: 500px;
+    height: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#listado_mapas{
+    order: 2;
+    width: 500px;
+    height: auto;
+    margin-top: 60px;
+}
+
+#mapas_contenedor{
+    order: 3;
+    width: calc(100% - 500px);                
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#mapas_rangos{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items:center;
+    margin-right:auto;
+    margin-left:auto;
+    width: 100%;
+    justify-content: center;
+}
+
+#mapasvg{
+    height:500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+/** RANGOS **/
+
+#titulo_leyendas{
+    width: 100%;
+    text-align:center;
+    font-weight: bold;	
+    font-size:14px;
+    padding-bottom: 5px;
+    padding-top: 9px;
+}
+
+.conte_leyendas{                
+    font-size: 11px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-right:20px;
+    margin-top: 7px;
+
+}
+
+.conte_leyendas .titulo{
+    font-size: 12px;
+    text-align: center;
+    align: center;
+    width: 100%;
+}
+
+.conte_leyendas .texto{
+    font-size: 12px;
+}
+
+.leyenda{
+    width: 30px;
+    height: 30px;                                
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+
+
+/** RESPONSIVO **/
+
+@media screen and (max-width: 1470px){
+
+    #contenido123{
+        flex-direction: row;
+        height: auto;
+        align-items: baseline;
+    }
+
+    #datos_tema{
+        order: 1;
+        width: 50%;                    
+    }
+
+    #listado_mapas{
+        order: 2;
+        width: 50%;
+        margin-bottom: 20px;
+    }
+
+    #mapas_contenedor{                     
+        order: 3;  
+        width: 100%;
+        position:relative;
+        min-height: 750px;
+    }
+
+    #mapasvg{
+        height: auto;
+    }
+
+}
+
+@media screen and (max-width: 970px){
+    #contenido123{                    
+        flex-direction: row;
+        height: auto;
+        justify-content: center;
+        align-items: baseline;
+    }
+
+    #datos_tema{
+        width: 50%;                    
+    }
+
+    #listado_mapas{
+        width: 50%;
+    }
+
+    #mapas_contenedor{                    
+        margin-top: 20px;
+        width: 100%;
+        position: static;
+        display: flex;
+        flex-direction: column;
+        min-height: 0px;
+    }
+
+    #mapasvg{        
+        height:auto;
+    }
+
+}
+
+@media screen and (max-width: 750px){
+
+    #contenido123{                    
+        flex-direction: row;
+        height: auto;
+    }
+
+    #datos_tema{
+        order: 1;
+        width: 100%;  
+    }
+
+    #listado_mapas{
+        order: 4;
+        margin-top: 20px;
+        width: 100%;
+
+    }
+
+    #mapas_contenedor{ 
+        order: 2;
+        margin-top: 20px;
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+
+    }
+
+    #mapas_rangos{
+        width: 100%;
+        height: auto;
+        margin-top: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #dnal{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #dest{
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* estilo tabla de datos en index */
+.tabla_datos{
+
+}
+
+.numeros_tabla{
+    font-size: 20px;	
+    text-align: right;
+    font-weight: bold;
+    width: 48.5%;
+}
+
+.texto_tabla{
+    font-size: 12px;
+    text-align:left;	
+    width: 48.5%;
+    white-space:nowrap;
+}
+
+
+
+
+
+#dnal {    
+    width: 80%;
+}
+
+#dest {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.cantidad{
+    display: inline-block;
+    width: 48.5%;
+    text-align: right;
+    margin-right: 1.5%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.etiqueta{
+    display: inline-block;
+    width: 48.5%;
+    text-align: left;
+    margin-left: 1.5%;
+    font-size: 12px;
+}
+
+
+
+#notas{
+    margin-top: 15px;
+    width: 100%;
+    font-size: 9px;
+
+}
+
+
+/* estilo listas en index*/
+#titulo_lista{
+    width: 100%;
+    display:flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+
+}
+
+.total_lista{
+    font-weight: bold;
+    font-size: 22px;
+    margin-right: auto;
+}
+
+.botones_lista {
+    margin-right: 6%;
+    padding-top: 6px;
+}
+
+.foto_lista{
+    display: inline-block;
+}
+
+.nombre_lista{
+    display: inline-block;
+    font-size: 13px;
+    margin-left: 5px;
+    line-height: 80%;
+}
+
+.adscripcion_lista{
+    font-size: 11px;
+    color: rgba(0,0,0,0.6);
+}
+
+/*estilo tooltip de mapa sensible*/
+
+div.tooltip {
+    background-color : #fff;
+
+    opacity: 0.70;
+    filter:alpha(opacity=70);
+    position: absolute;                                        
+    padding: 10px;                                     
+    font-family: helvetica,sans-serif;
+    font-size: 11px;
+    border: 0px;      
+    border-radius: 8px;           
+    pointer-events: none; 
+    color:#343434;
+}
+
+/*estilos para los listados */
+
+
+.contlist{
+    max-width: 450px;
+    min-height: 70px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.imagenlist{
+    min-width: 50px;
+    min-height: 50px;
+}
+
+.textolist{
+    min-width: 260px;
+    font-size: 80%;
+    margin-left: 20px;
+}
+
+.nombrelist{
+    font-weight: bold;
+    font-size: 128%;
+}
+
+.centradocor{
+    object-fit: cover; 
+    object-position: center; 
+    height: 50px;
+    width: 50px;
+}
+
+
+.cuadrito,.cuadritoConv{  
+    width: 50px;
+    height: 50px;
+    background-color: rgba(249,181,24,0.30);
+}
+
+.cuadritoConv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: rgb(255,255,255);
+    font-weight: bold;    
+}
+
+
+@media screen and (max-width: 321px){
+    .textolist{
+        min-width: 0px;   
+    }
+}
+
+@media screen and (max-width: 412px){
+    .mapasvg{
+        min-width: 110%;   
+    }
+}
+
+
+@media screen and (max-width: 412px){
+    .card{
+        min-width: 20%;   
+    }
+}
+
+
+
+.land {
+    fill: #b9b9b9;
+    stroke: white;
+    stroke-width: 1.5;
+    stroke-miterlimit: 4;
+}
+.coast {
+    stroke-width: 0.5;
+}
+.circle {
+    opacity: 0;
+    fill-opacity: 1;
+    stroke: black;
+    stroke-width: 0.5;
+    stroke-opacity: 1;
+}
+path:hover {
+    opacity: 0.5;
+}
+
+
+  
+#country_name{
+    font-size: 130px;
+}
+
+
+
+
+
+.rango span{
+    color: #000;
+}
+
+
+
+

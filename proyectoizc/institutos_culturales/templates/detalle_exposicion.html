@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% block extracss %}
+
+<link rel="stylesheet" href="{%static '/css/Sidebar.css'%}">
+<link rel="stylesheet" href="{%static '/css/google_map.css'%}">
+<link rel="stylesheet" href="{%static '/css/vista_detallada2.css'%}">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+{% endblock %}
+
+<!-- This jquery library is importnat. With this you can do the below "getJSON" jQuery  -->
+
+<body>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+        <div class="sb-sidenav-menu">
+          <div class="nav">
+            <div>
+              <div class="sb-sidenav-menu-heading"></div>
+              <a class="nav-link active" href="/institutos_culturales/exposiciones/registrar_exposicion">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-plus-circle"
+                    style="padding-right: 5px;"></i>Nueva exposicion</button>
+              </a>
+              <a class="nav-link active" href="#">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-pen-square"
+                    style="padding-right: 5px;"></i>Editar</button>
+              </a>
+              <a class="nav-link active" href="{% url 'eliminar_exposicion' exposicion.id %}">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-trash"
+                    style="padding-right: 5px;"></i>Eliminar</button>
+              </a>
+            </div>
+            
+            
+          </div>
+        </div>
+        <div class="sb-sidenav-footer">
+          <div class="small"><span style="font-family: Montserrat, sans-serif;">Usuario : {{user}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="layoutSidenav_content">
+      <div class="card text-dark bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Talleres de formación cultural</b></div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="project-info-box mt-0">
+                <h3>{{ exposicion.nombreExposicion }}</h3>
+              </div>
+              <div class="project-info-box">
+                <p><b>Tipo de exposición: </b>{{ exposicion.get_tipoExposicion_display }}</p>
+                    <p><b>Género: </b> {{ exposicion.generoExposicion }} </p>
+                    <p><b>Disciplina o Técnica: </b> {{ exposicion.disciplinaTecnicaExposicion }} </p>
+                    <p><b>Nombre del Especialista: </b> {{ exposicion.nombreEspecialistaExposicion }} </p>
+                    <p><b>Procedencia del Especialista: </b> {{ exposicion.procedenciaEspecialistaExposicion }} </p>
+                    <p><b>Número de Expositores: </b> {{ exposicion.numeroExpositores }} </p>
+                    <p><b>Institución Responable de la Exposición: </b> {{ exposicion.institucionResponsableDeExposicion }} </p>
+                    <p><b>Foro o Espacio: </b> {{ exposicion.foroEspacioExposicion }} </p>
+                    <p><b>Periodo de Exposición: </b> {{ exposicion.periodoExposicion }} </p>
+                    <p><b>Fecha de Inauguración: </b> {{ exposicion.fechaInauguracionExposicion }} </p>
+                    <p><b>Municipio: </b> {{ exposicion.get_municipioExposicion_display }} </p>
+                    <p><b>Localidad: </b> {{ exposicion.localidadExposicion }} </p>
+                    <p><b>Cobertura: </b> {{ exposicion.coberturaExposicion }} </p>
+                    <p><b>No.Instructores Mujeres:: </b> {{ exposicion.numeroInstructoresMujeresTaller }} </p>
+                    <p><b>Niños: </b> {{ exposicion.ninosExposicion }} </p>
+                    <p><b>Niñas: </b> {{ exposicion.ninasExposicion }} </p>
+                    <p><b>Jovenes Hombres: </b> {{ exposicion.jovenesHombresExposicion }} </p>
+                    <p><b>Jovenes Mujeres: </b> {{ exposicion.jovenesMujeresExposicion }} </p>
+                    <p><b>Adultos Hombres: </b> {{ exposicion.adultosHombresExposicion }} </p>
+                    <p><b>Adultos Mujeres: </b> {{ exposicion.adultosMujeresExposicion }} </p>
+                    <p><b>Fuente de Información: </b> {{ exposicion.fuenteInformacionExposicion }} </p>
+                    <p><b>Observaciones: </b> {{ exposicion.observacionesExposicion }} </p>
+
+                <!-- Otras propiedades aquí -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+
+</body>
+{% endblock %}

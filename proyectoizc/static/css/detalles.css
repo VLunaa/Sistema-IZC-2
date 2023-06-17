@@ -1,0 +1,17 @@
+/* Estilos para dispositivos pequeños de tabla de detalle de talleres*/
+@media (max-width: 767px) {
+    .project-info-box {
+      margin-bottom: 20px;
+    }
+  
+    .project-info-box table {
+      margin-bottom: 20px;
+    }
+  
+    .project-info-box h5 {
+      margin-top: 20px;
+    }
+  }
+  
+
+

@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% block extracss %}
+<title>{% block title %}Proyecto IZC{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/Montserrat.css' %}">
+<link rel="stylesheet" href="{% static 'css/Navbar-Right-Links-Dark-icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+<link rel="icon" href="{% static 'img/logo_icono.ico' %}">
+<link rel="stylesheet" href="{% static 'css/Sidebar.css' %}">
+<style>
+  html,
+  body,
+  .container-fluid {
+    height: 100%;
+  }
+
+  .row {
+    display: flex;
+    height: 100%;
+  }
+
+  .col-md-2.sidebar-container {
+    overflow-y: auto;
+  }
+
+  .col-md-10 {
+    overflow-y: auto;
+  }
+</style>
+{% endblock extracss %}
+
+<!-- This jquery library is importnat. With this you can do the below "getJSON" jQuery  -->
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar-container">
+        <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div>
+              <div class="sb-sidenav-menu-heading"></div><a class="nav-link active d-flex justify-content-center" href="{% url 'registrar_datos' %}">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-plus-circle"
+                    style="padding-right: 5px;"></i>Registrar nuevo Museo</button>
+              </a>
+              <a class="nav-link active d-flex justify-content-center" href="{% url 'asistencias' %}">
+                <div class="sb-nav-link-icon"></div><button class="btn"><i class="fa fa-users"
+                    style="padding-right: 5px;"></i>Asistencias de Museos</button>
+              </a>
+              
+            </div>
+            <hr>
+            <div>
+              <div class="sb-sidenav-menu-heading align-content-center">
+                <b><p class="text-white">Filtros</p></b>
+              </div>
+            <form method = "POST">
+              {% csrf_token %}
+              
+              <div class="nav-link collapsed custom-link"  data-toggle="collapse" data-target="#collapseLayouts"
+              aria-expanded="false" aria-controls="collapseLayouts">
+              <span>Municipio<p>{{form.municipio}}</p></span>
+            </div>
+
+
+            <div class="nav-link collapsed custom-link"  data-toggle="collapse" data-target="#collapseLayouts"
+              aria-expanded="false" aria-controls="collapseLayouts">
+              <span>Museo<p>{{form.nombre}}</p></span>
+            </div>
+
+              
+            <div class="nav-link collapsed custom-link" data-toggle="collapse" data-target="#collapseLayouts"
+            aria-expanded="false" aria-controls="collapseLayouts">
+            <button class="btn"><i class="fa" style="padding-right: 5px;" type="submit"></i>Filtrar</button>
+          </div>
+            </form>
+
+              <div id="collapseLayouts" class="collapse" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <div class="sb-sidenav-menu-nested nav"><a class="nav-link" href="#">Menu
+                    Accordion</a><a class="nav-link" href="#"></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sb-sidenav-footer">
+          <div class="small"><span style="font-family: Montserrat, sans-serif;">Usuario: {{user}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="card border-0 text-dark bg-light shadow  p-2 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;">
+          <b>Museos: {{ museos.count }}</b>
+          <div class="btn-group float-end">
+            <a href="{% url 'geolocalizacion_museos' %}" class="btn btn-sm btn-primary">
+              <i class="fa fa-map-marked"></i> Geolocalización
+            </a>
+            <a href="{% url 'georreferenciacion_museos' %}" class="btn btn-sm btn-primary">
+              <i class="fa fa-map-pin"></i> Georreferenciación
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="album py-3 bg-light">
+            <div class="row">
+                {% for museo in museos %}
+                <div class="col-md-4">
+                  <div class="card mb-4">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                      {% if museo.imagenMuseo %}
+                      <img class="card-img-top img-fluid card-default" src="{{ museo.imagenMuseo.url }}" alt="Card image cap">
+                      {% endif %}
+                      <hr>
+                      <h5 class="card-title">{{ museo.nombre_museo }}</h5>
+                      <p class="card-text">{{ museo.get_municipioMuseo_display }}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <a href="{% url 'detalle_museo' museo.id %}" class="btn btn-sm btn-primary">
+                            <i class="fa fa-eye"></i> Ver
+                          </a>
+                          <a href="{% url 'editar_museo' museo.id %}" class="btn btn-sm btn-primary">
+                            <i class="fa fa-edit"></i> Editar
+                          </a>
+                          <a href="#" class="btn btn-sm btn-primary">
+                            <i class="fa fa-list"></i> Asistencias
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

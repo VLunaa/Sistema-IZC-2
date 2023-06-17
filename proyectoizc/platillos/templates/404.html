@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% block extracss %}
+<link rel="stylesheet" href="//unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="{%static '/css/Sidebar.css'%}">
+{% endblock %}
+
+<body>
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row row-cols-1 d-flex justify-content-center align-items-center">
+                <div class="col-md-10 text-center"><img class="img-fluid w-100" src="assets/img/illustrations/404.svg"></div>
+                <div class="col text-center">
+                    <h2 class="display-3 fw-bold mb-4">Página no encontrada</h2>
+                    <p class="fs-4 text-muted">La página que estás buscando no se encuentra en el servidor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+       
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/startup-modern.js"></script>
+</body>
+
+</html>
+{% endblock %}

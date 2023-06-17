@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static '/css/Sidebar.css' %}">
+<link rel="stylesheet" href="{% static '/css/google_map.css' %}">
+<link rel="stylesheet" href="{% static '/css/vista_detallada2.css' %}">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+<style>
+  html,
+  body,
+  .container-fluid {
+    height: 100%;
+  }
+
+  .row {
+    display: flex;
+    height: 100%;
+  }
+
+  .col-md-2.sidebar-container {
+    overflow-y: auto;
+  }
+
+  .col-md-10 {
+    overflow-y: auto;
+  }
+
+  .break-word {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+  }
+
+  .description-field {
+    font-weight: bold;
+  }
+</style>
+{% endblock %}
+
+<!-- This jquery library is important. With this, you can use the "getJSON" jQuery function below. -->
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar-container">
+        <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div>
+                <div class="sb-sidenav-menu-heading"></div>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'registrar_platillo' %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Nuevo Platillo</button>
+                </a>
+                <hr>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'editar_platillo' platillo.id %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-pen-square" style="padding-right: 5px;"></i>Editar</button>
+                </a>
+                <a class="nav-link active d-flex justify-content-center" href="{% url 'eliminar_platillo' platillo.id %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-trash" style="padding-right: 5px;"></i>Eliminar</button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="sb-sidenav-footer">
+            <div class="small"><span style="font-family: Montserrat, sans-serif;">Logged as: {{ user }}</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="card text-dark border-0 bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+          <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Datos detallados de Artista/Creador</b></div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="project-info-box mt-0">
+                  <h5>{{ platillo.nombrePlatillo }}</h5>
+                </div><!-- / project-info-box -->
+                <div class="project-info-box">
+                  <div class="description-field font-weight-bold">Descripción general:</div>
+                  <div class="description-value break-word">{{ platillo.descripcionPlatillo }}</div>
+                  <hr>
+                  <div class="description-field">Municipio:</div>
+                  <div class="description-value break-word">{{ platillo.get_municipioPlatillo_display }}</div>
+                  <hr>
+                  <div class="description-field">Ingredientes:</div>
+                  <div class="description-value break-word">{{ platillo.ingredientesPlatillo }}</div>
+                </div><!-- / project-info-box -->
+                
+              </div><!-- / column -->
+              {% if platillo.imagenPlatillo %}
+              <div class="col-md-5">
+                <img src="{{ platillo.imagenPlatillo.url }}" alt="project-image" class="img-fluid rounded">
+              </div><!-- / column -->
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-mx">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}Proyecto IZC{% endblock %}</title>
+    <link rel="stylesheet" href="{%static '/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static '/css/Montserrat.css'%}">
+    <link rel="stylesheet" href="{%static '/css/Navbar-Right-Links-Dark-icons.css'%}">
+    <link rel="stylesheet" href="{%static '/css/fontawesome.css'%}">
+    <link rel="icon" href="{% static 'img/logo_icono.ico' %}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Navbar-->
+    <nav class="navbar navbar-light navbar-expand-lg fw-normal shadow-sm py-3">
+        <div class="container-fluid"><img src="{%static '/img/izc-logo-header.png'%}" width="180" height="60"><button
+                data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-5">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/home/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/creadores/">Creadores</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/platillos/">Gastronomía</a></li>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <span class="nav-item">Espacios Culturales</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-white border-0 rounded-0 rounded-bottom m-0">
+                            <a href="/espacios_culturales/casas/" class="dropdown-item">Casas de Cultura</a>
+                            <a href="/espacios_culturales/espacios_eventos/" class="dropdown-item">Teatros y Auditorios</a>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <li class="nav-item"><a class="nav-link active" href="/institutos_culturales/">Instituciones Culturales</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/eventos/">Eventos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/datosHistoricos/">Datos</a></li>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <span class="nav-item">Usuarios</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-white border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">Gestión</a>
+                            <a href="#" class="dropdown-item">Configuración</a>
+                            <a href="{% url 'logout' %}" class="dropdown-item">Salir</a>
+                        </div>
+                    </div>
+
+                    <li class="nav-item">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar-->
+    {% block content %}
+
+    {% endblock content %}
+
+    {% block scripts %}
+    <script src="{%static '/bootstrap/js/bootstrap.min.js'%}"></script>
+    {% endblock scripts %}
+
+</body>
+</html>

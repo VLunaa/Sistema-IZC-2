@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extrahead %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" >
+{% endblock %}
+{% block content %}
+<head>
+    {{form.media}}
+</head>
+<body>
+    <div class="card text-dark bg-light shadow p-3 bg-light"
+        style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Editar instituto</b>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">Información del Instituto Cultural</h6>
+            <hr>
+            <p class="card-text">
+                <form method="POST" enctype = "multipart/form-data">
+
+                    {% csrf_token %}
+                    
+                    {{form.as_p}}
+
+                    <button id="guardar-button" type="submit" class="btn"
+                        style="margin: 16px; background-color: #A71E1C; border-radius: 14px; color: white;">
+                        Guardar
+                    </button>
+
+                </form>
+            </p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+    <div class="card text-dark bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Registra una Producción </b>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">Información de la Producción</h6>
+
+
+            <p class="card-text">
+                <form method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+
+                    <div class="form-group">
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque el nombre de la Publicación.">
+                            <div class="form-group">
+                                <label>Nombre: </label>  <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.nombreProduccionInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Coloque un numero de teléfono o red social del artista.">
+                                <div class="form-group">
+                                <label>Genero: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.generoProduccionInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Seleccione el nombre del municipio del artista.">
+                                <div class="form-group">
+                                <label>Disciplina: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.disciplinaProduccionInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la localidad, rancheria, ciudad o comunidad donde vive el artista.">
+                            <div class="form-group">
+                                <label>Cantidad o Tiraje: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.cantidadTirajeInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione el grado máximo de estudios del artista.">
+                            <div class="form-group">
+                                <label>Institución responsable: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.institucionResponsableDeProduccionInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Coloque un numero de teléfono o red social del artista.">
+                                <div class="form-group">
+                                <label>Fecha Publicación: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.fechaDePublicacion }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Datos del Autor de la Publicación</b>
+                        </div>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione la forma de aprendizaje del artista, en caso de que haya sido por cuenta propia, coloque empírico.">
+                            <div class="form-group">
+                                <label>Nombre(s) del Autor(es): </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.nombreAutorInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="En caso de que el artista haya adquirido el conocimiento de alguna institución, coloque el nombre de la misma.">
+                            <div class="form-group">
+                                <label>Procedencia del Autor(es): </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.procedenciaAutorInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Coloque un numero de teléfono o red social del artista.">
+                                <div class="form-group">
+                                <label>No. Autores Hombres: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.numeroAutoresHombresInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Seleccione el nombre del municipio del artista.">
+                                <div class="form-group">
+                                <label>No. Autores Mujeres: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.numeroAutoresMujeresInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+                        
+                        <br>
+                        <span data-toggle="tooltip"
+                        title="Seleccione el grado máximo de estudios del artista.">
+                        <div class="form-group">
+                            <label>Fuente y/o Responsable de Información: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                            {{ form.fuenteInformacionProduccionInst }}
+                            <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                        </div>
+                    </span>
+                    <br>
+                    <span data-toggle="tooltip"
+                    title="Seleccione el grado máximo de estudios del artista.">
+                    <div class="form-group">
+                        <label>Observaciones: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                            type="button"></i>
+                        {{ form.observacionesProduccionInst }}
+                        <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                    </div>
+                </span>
+                <br>
+                    <span data-toggle="tooltip"
+                    title="Inserte un enlace a repositorio o publicación de de la Producción.">
+                    <div class="form-group">
+                        <label>Evidencias: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                            type="button"></i>
+                        {{ form.evidenciasProduccion }}
+                        <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                    </div>
+                </span>
+                
+        </span>
+                
+                        <br>
+                        <button id="guardar-button" type="submit" class="btn"
+                            style="margin: 16px; background-color: #A71E1C; border-radius: 14px; color: white;">
+                            Guardar
+                        </button>
+
+                </form>
+            </p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

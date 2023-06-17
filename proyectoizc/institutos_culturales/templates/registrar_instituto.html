@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    {{form.media}}
+</head>
+
+<body>
+    <div class="card text-dark bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Registra un Instituto</b>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">Información del Instituto Cultural</h6>
+            <hr>
+
+            <p class="card-text">
+                <form method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+
+                    <div class="form-group">
+                        <span data-toggle="tooltip" title="Coloque el nombre del Instituto Cultural.">
+                            <div class="form-group">
+                                <label>Nombre del Instituto Cultural: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{form.nombreInstituto}}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip" title="Coloque los datos generales o importantes sobre el Instituto.">
+                            <div class="form-group">
+                                <label>Datos generales: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.datosGeneralesIns }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione el municipio del Instituto Cultural.">
+                            <div class="form-group">
+                                <label>Municipio: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.municipioInstituto }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque el nombre del Director encargado del Instituto Cultural.">
+                            <div class="form-group">
+                                <label>Director encargado: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                    <br>
+                                {{ form.directorInstituto }}
+                                <br>
+
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque el personal que se tiene a cargo.">
+                            <div class="form-group">
+                                <label>Personal total a cargo: </label>  <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.personalTotal }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo puede ser vacío</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la ubicación geográfica del Instituto Cultural.">
+                            <div class="form-group">
+                                <label>Ubicacion del Instituto: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.ubicacionInstituto }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque una imagen del Instituto Cultural.">
+                            <div class="form-group">
+                                <label>Imagen del Instituto: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.imagenInstituto }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <button id="guardar-button" type="submit" class="btn"
+                            style="margin: 16px; background-color: #A71E1C; border-radius: 0px; color: white;">
+                            Guardar
+                        </button>
+
+                </form>
+            </p>
+        </div>
+    </div>
+</body>
+
+
+{% endblock content %}

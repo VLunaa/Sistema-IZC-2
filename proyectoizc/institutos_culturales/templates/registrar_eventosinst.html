@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+    <div class="card text-dark bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Registra un Evento</b>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">Información del Evento</h6>
+            <hr>
+
+
+            <p class="card-text">
+                <form method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+
+                    <div class="form-group">
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque el género del artista.">
+                            <div class="form-group">
+                                <label>Nombre del Evento: </label>  <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                                {{ form.nombreEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Coloque un numero de teléfono o red social del artista.">
+                                <div class="form-group">
+                                <label>Género: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.generoEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Seleccione el nombre del municipio del artista.">
+                                <div class="form-group">
+                                <label>Disciplina: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.disciplinaEventoInst}}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la localidad, rancheria, ciudad o comunidad donde vive el artista.">
+                            <div class="form-group">
+                                <label>Institución Responsable del Evento: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.institucionResponsableDeEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Coloque la especialidad del artista. Ejemplo: Bajo. Pintor Realista. Música regional. ETC.">
+                            <div class="form-group">
+                                <label>Foro o Espacio: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.foroEspacioEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Coloque un numero de teléfono o red social del artista.">
+                                <div class="form-group">
+                                <label>Municipio: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.municipioEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-6">
+                            <span data-toggle="tooltip" title="Seleccione el nombre del municipio del artista.">
+                                <div class="form-group">
+                                <label>Localidad: </label> 
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.localidadEventoInst}}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+                        <span data-toggle="tooltip"
+                            title="Seleccione la forma de aprendizaje del artista, en caso de que haya sido por cuenta propia, coloque empírico.">
+                            <div class="form-group">
+                                <label>Fecha de realización: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                    type="button"></i>
+                                {{ form.fechaRealizacionEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                            </div>
+                        </span>
+                        <br>
+                        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Datos de Artistas
+                            Participantes</b>
+                        </div>
+                        <br>
+                        <span data-toggle="tooltip"
+                        title="Seleccione la forma de aprendizaje del artista, en caso de que haya sido por cuenta propia, coloque empírico.">
+                        <div class="form-group">
+                            <label>Nombre de Artista y/o grupo: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                            {{ form.nombreCreadorEventoInst }}
+                            <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                        </div>
+                    </span>
+                    <br>
+                    <span data-toggle="tooltip"
+                    title="Seleccione la forma de aprendizaje del artista, en caso de que haya sido por cuenta propia, coloque empírico.">
+                    <div class="form-group">
+                        <label>Procedencia: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                            type="button"></i>
+                        {{ form.procedenciaCreadorEventoInst }}
+                        <small id="obligatorioID" class="form-text text-muted">Campo opcional</small>
+                    </div>
+                </span>
+
+                <div class="row">
+                    <div class="col-md-6">
+                    <span data-toggle="tooltip" title="Coloque un numero de teléfono o red social del artista.">
+                        <div class="form-group">
+                        <label>No. Artistas Hombres: </label> 
+                        <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                        {{ form.numeroCreadoresHombresEventoInst }}
+                        <small id="obligatorioID" class="form-text text-muted">Campo opcional</small>
+                        </div>
+                    </span>
+                    </div>
+                    <div class="col-md-6">
+                    <span data-toggle="tooltip" title="Seleccione el nombre del municipio del artista.">
+                        <div class="form-group">
+                        <label>No. Artistas Mujeres: </label> 
+                        <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                        {{ form.numeroCreadoresMujeresEventoInst}}
+                        <small id="obligatorioID" class="form-text text-muted">Campo opcional</small>
+                        </div>
+                    </span>
+                    </div>
+                </div>
+
+                        <br>
+                        <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Datos de Beneficiarios </b>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido paterno del artista.">
+                                <div class="form-group">
+                                <label>Niños: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.ninosEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido materno del artista.">
+                                <div class="form-group">
+                                <label>Jovenes hombres: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.jovenesHombresEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque la fecha de nacimiento del artista.">
+                                <div class="form-group">
+                                <label>Adultos hombres: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.adultosHombresEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido paterno del artista.">
+                                <div class="form-group">
+                                <label>Niños: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.ninasEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque el apellido materno del artista.">
+                                <div class="form-group">
+                                <label>Jovenes hombres: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.jovenesMujeresEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="col-md-4">
+                            <span data-toggle="tooltip" title="Coloque la fecha de nacimiento del artista.">
+                                <div class="form-group">
+                                <label>Adultos hombres: </label>
+                                <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;" type="button"></i>
+                                {{ form.adultosMujeresEventoInst }}
+                                <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                        <br>
+                        <span data-toggle="tooltip"
+                        title="Seleccione el grado máximo de estudios del artista.">
+                        <div class="form-group">
+                            <label>Fuente y/o Responsable de Información: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                                type="button"></i>
+                            {{ form.fuenteInformacionEventoInst }}
+                            <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                        </div>
+                    </span>
+                    <br>
+                    <span data-toggle="tooltip"
+                    title="Seleccione el grado máximo de estudios del artista.">
+                    <div class="form-group">
+                        <label>Observaciones: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                            type="button"></i>
+                        {{ form.observacionesEventoInst }}
+                        <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                    </div>
+                    <br>
+                    <span data-toggle="tooltip"
+                    title="Seleccione el grado máximo de estudios del artista.">
+                    <div class="form-group">
+                        <label>Evidencias: </label> <i class="fa fa-info-circle" style="pointer-events: none; color: #A71E1C;"
+                            type="button"></i>
+                        {{ form.evidenciasEventoInst }}
+                        <small id="obligatorioID" class="form-text text-muted">Campo obligatorio</small>
+                    </div>
+                </span>
+                <br>
+                
+        </span>
+                
+                        <br>
+                        <button id="guardar-button" type="submit" class="btn"
+                            style="margin: 16px; background-color: #A71E1C; border-radius: 14px; color: white;">
+                            Guardar
+                        </button>
+
+                </form>
+            </p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

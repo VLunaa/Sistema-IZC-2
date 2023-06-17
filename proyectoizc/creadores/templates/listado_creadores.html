@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static '/css/Sidebar.css' %}">
+<link rel="stylesheet" href="{% static '/css/google_map.css' %}">
+<link rel="stylesheet" href="{% static '/css/vista_detallada2.css' %}">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style>
+  html,
+  body,
+  .container-fluid,
+  .row,
+  .col-md-2,
+  .col-md-10 {
+    height: 102%;
+  }
+
+  
+</style>
+{% endblock %}
+
+<!-- This jquery library is important. With this, you can use the "getJSON" jQuery function below. -->
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar-container">
+        <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div>
+                <div class="sb-sidenav-menu-heading"></div>
+                <a class="nav-link active custom-link custom-link" href="/creadores/registrar_creador/">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Registrar nuevo Creador</button>
+                </a>
+              </div>
+              <div>
+                <div class="sb-sidenav-menu-heading"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="sb-sidenav-footer">
+            <div class="small"><span style="font-family: Montserrat, sans-serif;">Logged as: {{ user }}</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="card text-dark border-0 bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+          <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Lista de cantidad de Artista/Creador por Municipio</b>
+            <a href="{% url 'mapa_creadores' %}" class="btn btn float-end" style="margin-left: 5px;">
+              <i class="fa fa-map-marker" style="padding-right: 5px;"></i>Georreferenciación
+            </a>
+            </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="container">
+                <table class="table table-hover">
+                  <!-- Mostrar los datos de cada municipio -->
+                  {% for conteo in page_obj %}
+                  <tr>
+                    <td><b>{{ conteo.nombreMunicipio }}:</b></td>
+                    <td>{{ conteo.total }}</td>
+                  </tr>
+                  {% endfor %}
+                </table>
+                
+                <!-- Mostrar la paginación -->
+                <div class="pagination">
+                  {% if page_obj.has_previous %}
+                  <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                  {% endif %}
+                  
+                  <span class="current-page">{{ page_obj.number }}</span>
+                  
+                  {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                  {% endif %}
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static '/css/Sidebar.css' %}">
+<link rel="stylesheet" href="{% static '/css/google_map.css' %}">
+<link rel="stylesheet" href="{% static '/css/vista_detallada2.css' %}">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style>
+  html,
+  body,
+  .container-fluid {
+    height: 100%;
+  }
+
+  .row {
+    display: flex;
+    height: 100%;
+  }
+
+  .col-md-2.sidebar-container {
+    overflow-y: auto;
+  }
+
+  .col-md-10 {
+    overflow-y: auto;
+  }
+</style>
+{% endblock %}
+
+<!-- This jquery library is important. With this, you can use the "getJSON" jQuery function below. -->
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar-container">
+        <div id="sidenavAccordion" class="sb-sidenav accordion sb-sidenav-dark">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div>
+                <div class="sb-sidenav-menu-heading"></div>
+                <a class="nav-link active custom-link" href="{% url 'registrar_creador' %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-plus-circle" style="padding-right: 5px;"></i>Nuevo Artista/Grupo Artístico</button>
+                </a>
+                <hr>
+                <a class="nav-link active custom-link" href="{% url 'editar_creador' creador.id %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-pen-square" style="padding-right: 5px;"></i>Editar</button>
+                </a>
+                <a class="nav-link active custom-link" href="{% url 'eliminar_creador' creador.id %}">
+                  <div class="sb-nav-link-icon"></div>
+                  <button class="btn"><i class="fa fa-trash" style="padding-right: 5px;"></i>Eliminar</button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="sb-sidenav-footer">
+            <div class="small"><span style="font-family: Montserrat, sans-serif;">Usuario: {{ user }}</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="card text-dark border-0 bg-light shadow p-3 bg-light" style="font-family: Montserrat;">
+          <div class="card-header" style="background-color: #A71E1C; color: white;"><b>Datos detallados de Artista/Creador</b></div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="project-info-box mt-0">
+                  <h5>{{ creador.nombre }} {{ creador.apellido_paterno }} {{ creador.apellido_materno }},
+                    {{ creador.get_disciplinaCreador_display }}</h5>
+                </div><!-- / project-info-box -->
+                <div class="project-info-box">
+                  <table class="table table-hover">
+                    <tr>
+                      <td><b>Municipio:</b></td>
+                      <td>{{ creador.get_municipioCreador_display }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Localidad:</b></td>
+                      <td>{{ creador.localidadCreador }}</td>
+                    </tr>
+                    {% if creador.especialidadCreador %}
+                      <tr>
+                        <td><b>Especialidad:</b></td>
+                        <td>{{ creador.especialidadCreador }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if creador.disciplinaCreador %}
+                      <tr>
+                        <td><b>Otras Disciplinas:</b></td>
+                        <td>{{ creador.otraDisciplinaCreador }}</td>
+                      </tr>
+                    {% endif %}
+                    <tr>
+                      <td><b>Teléfono:</b></td>
+                      <td>{{ creador.contacto }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Fecha Nacimiento:</b></td>
+                      <td>{{ creador.fecha_nacimiento }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Edad:</b></td>
+                      <td>{{ age }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Género:</b></td>
+                      <td>{{ creador.get_genero_display }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Escolaridad:</b></td>
+                      <td>{{ creador.get_escolaridadCreador_display }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Desempeño:</b></td>
+                      <td>{{ creador.get_opcionCreador_display }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Conocimiento Artístico:</b></td>
+                      <td>{{ creador.get_gradoConocimientoCreador_display }}</td>
+                    </tr>
+                    {% if creador.lugarFormacionCreador %}
+                      <tr>
+                        <td><b>Lugar de formación:</b></td>
+                        <td>{{ creador.lugarFormacionCreador }}</td>
+                      </tr>
+                    {% endif %}
+                    <tr>
+                      <td><b>Vigencia:</b></td>
+                      <td>{{ creador.get_vigenciaCreador_display }}</td>
+                    </tr>
+                  </table>
+                </div><!-- / project-info-box -->
+              </div><!-- / column -->
+              <div class="col-md-5">
+                <img src="{{ creador.imagenCreador.url }}" alt="project-image" class="img-fluid rounded">
+              </div><!-- / column -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
